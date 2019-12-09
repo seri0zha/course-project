@@ -3,7 +3,8 @@ using System;
 using System.IO;
 using System.Text;
 using System.Windows;
-
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
 namespace CourseProject
 {
     /// <summary>
@@ -21,7 +22,7 @@ namespace CourseProject
         private void selectFileButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Text files (*.txt)|*.txt";
+            openFileDialog.Filter = "Text files (*.txt)|*.txt| Word documents (*.docx)|*.docx";
 
             if (openFileDialog.ShowDialog() == true)
             {
