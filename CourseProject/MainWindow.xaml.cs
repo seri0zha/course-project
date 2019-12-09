@@ -5,6 +5,9 @@ using System.Text;
 using System.Windows;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using System.Windows.Input;
+using System.Text.RegularExpressions;
+
 namespace CourseProject
 {
     /// <summary>
@@ -15,8 +18,6 @@ namespace CourseProject
         public MainWindow()
         {
             InitializeComponent();
-            inputText.Visibility = Visibility.Hidden;
-            outputText.Visibility = Visibility.Hidden;
         }
 
         private void selectFileButton_Click(object sender, RoutedEventArgs e)
@@ -32,7 +33,6 @@ namespace CourseProject
                 {
                     text = File.ReadAllText(openFileDialog.FileName, Encoding.Default);
                 }
-                inputText.Visibility = Visibility.Visible;
                 inputText.Text = text;
                 filePath.Text = openFileDialog.FileName.ToString();
             }
@@ -44,7 +44,6 @@ namespace CourseProject
             if (!string.IsNullOrEmpty(keyInput.Text))
             { 
                 outputText.Text = Vigenere.Decode(inputText.Text, keyInput.Text);
-                outputText.Visibility = Visibility.Visible;
             }
         }
         private void encodeButton_Click(object sender, RoutedEventArgs e)
@@ -52,7 +51,6 @@ namespace CourseProject
             if (!string.IsNullOrEmpty(keyInput.Text))
             {
                 outputText.Text = Vigenere.Encode(inputText.Text, keyInput.Text);
-                outputText.Visibility = Visibility.Visible;
             }
         }
         private static bool IsValidISO(string input)
@@ -70,11 +68,18 @@ namespace CourseProject
 
         private void saveFile_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Text file (*.txt)|*.txt";
-            if (saveFileDialog.ShowDialog() == true)
-                File.WriteAllText(saveFileDialog.FileName, outputText.Text);
-
+            if (!string.IsNullOrEmpty(outputText.Text))
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Text file (*.txt)|*.txt";
+                if (saveFileDialog.ShowDialog() == true)
+                    File.WriteAllText(saveFileDialog.FileName, outputText.Text);
+            }
+        }
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e) 
+        {
+            Regex regex = new Regex("[абвгдеёжзийклмнопрстуфхцчшщъыьэюя]");
+            e.Handled = !regex.IsMatch(e.Text);
         }
     }
 }

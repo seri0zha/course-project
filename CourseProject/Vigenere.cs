@@ -16,7 +16,7 @@ namespace CourseProject
                 {
                     int c = (Array.IndexOf(alphabet, char.ToLower(ch)) + Array.IndexOf(alphabet, char.ToLower(key[keyIndex]))) % N;
                     if (char.IsLower(ch))
-                    result += alphabet[c];
+                        result += alphabet[c];
                     else
                         result += char.ToUpper(alphabet[c]);
                     keyIndex++;
