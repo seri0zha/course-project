@@ -99,6 +99,38 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\Montserrat\Montserrat-Black.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-BlackItalic.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-Bold.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-BoldItalic.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-ExtraBold.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-ExtraBoldItalic.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-ExtraLight.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-ExtraLightItalic.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-Italic.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-Light.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-LightItalic.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-Medium.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-MediumItalic.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-Regular.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-SemiBold.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-SemiBoldItalic.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-Thin.ttf" />
+    <Resource Include="Fonts\Montserrat\Montserrat-ThinItalic.ttf" />
+    <Resource Include="Fonts\Nunito\Nunito-Black.ttf" />
+    <Resource Include="Fonts\Nunito\Nunito-BlackItalic.ttf" />
+    <Resource Include="Fonts\Nunito\Nunito-Bold.ttf" />
+    <Resource Include="Fonts\Nunito\Nunito-BoldItalic.ttf" />
+    <Resource Include="Fonts\Nunito\Nunito-ExtraBold.ttf" />
+    <Resource Include="Fonts\Nunito\Nunito-ExtraBoldItalic.ttf" />
+    <Resource Include="Fonts\Nunito\Nunito-ExtraLight.ttf" />
+    <Resource Include="Fonts\Nunito\Nunito-ExtraLightItalic.ttf" />
+    <Resource Include="Fonts\Nunito\Nunito-Italic.ttf" />
+    <Resource Include="Fonts\Nunito\Nunito-Light.ttf" />
+    <Resource Include="Fonts\Nunito\Nunito-LightItalic.ttf" />
+    <Resource Include="Fonts\Nunito\Nunito-Regular.ttf" />
+    <Resource Include="Fonts\Nunito\Nunito-SemiBold.ttf" />
+    <Resource Include="Fonts\Nunito\Nunito-SemiBoldItalic.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -108,6 +140,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Fonts\Montserrat\OFL.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fonts\Nunito\OFL.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
