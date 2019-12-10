@@ -7,6 +7,8 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
+using System.Threading;
+using DocumentFormat.OpenXml;
 
 namespace CourseProject
 {
@@ -22,20 +24,56 @@ namespace CourseProject
 
         private void selectFileButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Text files (*.txt)|*.txt| Word documents (*.docx)|*.docx";
 
+            string fileName = GetFileName();
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                MessageBox.Show(fileName);
+                var inputEncoding = Encoding.GetEncoding("iso-8859-1");
+                if (FileFormat(fileName) == "txt")
+                {
+                    string text = File.ReadAllText(fileName, Encoding.UTF8);
+                    if (IsValidISO(ConvertToUtf8(text)))
+                    {
+                        text = File.ReadAllText(fileName, Encoding.Default);
+                    }
+                    inputText.Text = text;
+                    filePath.Text = fileName.ToString();
+                }
+                else if (FileFormat(fileName) == "docx")
+                {
+                    Stream stream = File.Open(fileName, FileMode.Open);
+                    using (WordprocessingDocument wordDocument = WordprocessingDocument.Open(stream, false))
+                    {
+                        try
+                        {
+                            Body body = wordDocument.MainDocumentPart.Document.Body;
+                            string content = body.InnerText;
+                            inputText.Text = content;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Ошибка! {ex.Message}");
+                        }
+                    }
+                }
+            }
+        }
+
+        private string GetFileName()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "All files (*.*)|*.*| Text files (*.txt)|*.txt| Word documents (*.docx)|*.docx";
             if (openFileDialog.ShowDialog() == true)
             {
-                var inputEncoding = Encoding.GetEncoding("iso-8859-1");
-                string text = File.ReadAllText(openFileDialog.FileName, Encoding.UTF8);
-                if (IsValidISO(ConvertToUtf8(text)))
-                {
-                    text = File.ReadAllText(openFileDialog.FileName, Encoding.Default);
-                }
-                inputText.Text = text;
-                filePath.Text = openFileDialog.FileName.ToString();
+                return openFileDialog.FileName;
             }
+            return "";
+        }
+
+        private string FileFormat(string fileName)
+        {
+            return fileName.Split('.')[fileName.Split('.').Length - 1];
         }
 
         private void decodeButton_Click(object sender, RoutedEventArgs e)
@@ -70,9 +108,29 @@ namespace CourseProject
             if (!string.IsNullOrEmpty(outputText.Text))
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "Text file (*.txt)|*.txt";
+                saveFileDialog.Filter = "Text files (*.txt)|*.txt| Word documents (*.docx)|*.docx";
                 if (saveFileDialog.ShowDialog() == true)
-                    File.WriteAllText(saveFileDialog.FileName, outputText.Text);
+                {
+
+                    string fileName = saveFileDialog.FileName;
+                    if (fileName.Split('.')[fileName.Split('.').Length - 1] == "txt")
+                    {
+                        File.WriteAllText(fileName, outputText.Text);
+                    }
+                    else
+                    {
+                        using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(fileName, WordprocessingDocumentType.Document))
+                        {
+                            MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
+
+                            mainPart.Document = new Document(
+                                new Body(
+                                    new Paragraph(
+                                        new Run(
+                                            new Text(outputText.Text)))));
+                        }
+                    }
+                }
             }
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e) 

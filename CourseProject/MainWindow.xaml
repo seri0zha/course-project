@@ -44,7 +44,7 @@
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="Margin" Value="5"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="IsReadOnly" Value="False"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         </Style>
@@ -69,7 +69,7 @@
         </StackPanel>
        
         <TextBox x:Name="filePath" Grid.Column="0" Grid.Row="1" 
-                 FontStyle="Italic" Margin="0 5 5 5"/>
+                 IsReadOnly="True" FontStyle="Italic" Margin="0 5 5 5"/>
         <TextBox x:Name="inputText" Grid.Column="0" Grid.Row="2" 
                  Margin="0 5 5 0"/>
         
@@ -79,10 +79,10 @@
             <Button x:Name="decodeButton" Content="Decode" Click="decodeButton_Click"/>
             <Button x:Name="encodeButton"  Content="Encode" Click="encodeButton_Click"/>
         </StackPanel>
-        <TextBox x:Name="keyInput" Grid.Column="1" Grid.Row="1" IsReadOnly="False" 
+        <TextBox x:Name="keyInput" Grid.Column="1" Grid.Row="1" 
                  Text="Ключ" PreviewTextInput="NumberValidationTextBox" Margin="5 5 0 5"/>
         <TextBox x:Name="outputText" Grid.Column="1" Grid.Row="2" 
-                  Margin="5 5 0 0"/>
+                 IsReadOnly="True" Margin="5 5 0 0"/>
         
     </Grid>
 </Window>
