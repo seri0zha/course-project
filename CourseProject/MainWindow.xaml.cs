@@ -40,7 +40,6 @@ namespace CourseProject
 
         private void decodeButton_Click(object sender, RoutedEventArgs e)
         {
-
             if (!string.IsNullOrEmpty(keyInput.Text))
             { 
                 outputText.Text = Vigenere.Decode(inputText.Text, keyInput.Text);
@@ -58,7 +57,7 @@ namespace CourseProject
             byte[] bytes = Encoding.GetEncoding("ISO-8859-1").GetBytes(input);
             string result = Encoding.GetEncoding("ISO-8859-1").GetString(bytes);
             return string.Equals(input, result);
-        } // Result_v5.txt file was in iso-8859-1 charset, so I decided to check input file
+        } // Result_v5.txt file was in iso-8859-1 charset, so I decided to check input file for this.
 
         private static string ConvertToUtf8(string text)
         {
@@ -78,7 +77,7 @@ namespace CourseProject
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e) 
         {
-            Regex regex = new Regex("[абвгдеёжзийклмнопрстуфхцчшщъыьэюя]");
+            Regex regex = new Regex($"[{new string(Vigenere.alphabet)}{(new string(Vigenere.alphabet).ToUpper())}]");
             e.Handled = !regex.IsMatch(e.Text);
         }
     }

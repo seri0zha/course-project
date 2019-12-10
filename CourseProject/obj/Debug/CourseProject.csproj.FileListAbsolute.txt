@@ -29,3 +29,4 @@ D:\CS-course\course-project\CourseProject\bin\Debug\DocumentFormat.OpenXml.dll
 D:\CS-course\course-project\CourseProject\bin\Debug\System.IO.Packaging.dll
 D:\CS-course\course-project\CourseProject\bin\Debug\DocumentFormat.OpenXml.xml
 D:\CS-course\course-project\CourseProject\obj\Debug\CourseProject.csproj.CopyComplete
+D:\CS-course\course-project\CourseProject\obj\Debug\GeneratedInternalTypeHelper.g.cs

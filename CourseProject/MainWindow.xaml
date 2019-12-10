@@ -4,23 +4,48 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CourseProject"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1000">
+        mc:Ignorable="d" 
+        Title="Decoder v1.0" Height="700" Width="1000"
+        MinHeight="400" MinWidth="500">
     <Window.Resources>
-        
+        <Style TargetType="local:MainWindow">
+            <Setter Property="Background" Value="#18191D"/>
+        </Style>
         <Style TargetType="Button">
-            <Setter Property="Margin" Value="0 0 10 0"/>
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#4f5359"/>
+                </Trigger>
+            </Style.Triggers>
+            <Style.Setters>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Foreground" Value="#c9f5f5"/>
+                <Setter Property="Background" Value="#34393F"/>
+                <Setter Property="Margin" Value="0 0 10 0"/>
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style.Setters>
         </Style>
         <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="#c9f5f5"/>
+            <Setter Property="FontFamily" Value="pack://application:,,,/Fonts/Montserrat/Montserrat-Regular.tft#Montserrat"/>
+            <Setter Property="Background" Value="#34393F"/>
             <Setter Property="Padding" Value="8"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="Margin" Value="5"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         </Style>
     </Window.Resources>
@@ -35,25 +60,29 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        <Button x:Name="selectFileButton" Content="Select file" 
-                Margin="5 10 5 0" Click="selectFileButton_Click"/>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" 
+                    VerticalAlignment="Top" HorizontalAlignment="Center"
+                    Margin="5 15 5 0">
+            <Button x:Name="selectFileButton" Content="Select file" 
+                    Click="selectFileButton_Click"/>
+            <Button x:Name="saveFile" Content="Save result" Click="saveFile_Click"/>
+        </StackPanel>
+       
         <TextBox x:Name="filePath" Grid.Column="0" Grid.Row="1" 
-                 FontStyle="Italic" Margin="0 5 5 5" BorderThickness="0 0 0 1"/>
+                 FontStyle="Italic" Margin="0 5 5 5"/>
         <TextBox x:Name="inputText" Grid.Column="0" Grid.Row="2" 
-                 Margin="0 5 5 0" BorderThickness="0 1 1 0"/>
+                 Margin="0 5 5 0"/>
         
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" 
                     VerticalAlignment="Top" HorizontalAlignment="Center"
                     Margin="5 15 5 0">
             <Button x:Name="decodeButton" Content="Decode" Click="decodeButton_Click"/>
             <Button x:Name="encodeButton"  Content="Encode" Click="encodeButton_Click"/>
-            <Button x:Name="saveFile" Content="Save result" Click="saveFile_Click"/>
         </StackPanel>
         <TextBox x:Name="keyInput" Grid.Column="1" Grid.Row="1" IsReadOnly="False" 
-                 Text="Ключ" PreviewTextInput="NumberValidationTextBox" Margin="5 5 0 5" BorderThickness="0 0 0 1"/>
+                 Text="Ключ" PreviewTextInput="NumberValidationTextBox" Margin="5 5 0 5"/>
         <TextBox x:Name="outputText" Grid.Column="1" Grid.Row="2" 
-                  Margin="5 5 0 0" BorderThickness="1 1 0 0"/>
+                  Margin="5 5 0 0"/>
         
     </Grid>
 </Window>

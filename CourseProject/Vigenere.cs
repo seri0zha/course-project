@@ -4,8 +4,15 @@ namespace CourseProject
 {
     public class Vigenere
     {
-        private readonly static char[] alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".ToCharArray();
+        public readonly static char[] alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".ToCharArray();
         private readonly static int N = alphabet.Length;
+
+        /*
+         * Если N   количество букв в алфавите, m — буквы открытого текста, k - буквы ключа,
+         * то шифрование методом Виженера можно записать следующим образом:
+         * c = (m + k) mod N
+         * m = (c + N - k) mod N
+         */
         public static string Encode(string inputString, string key)
         {
             string result = "";
@@ -39,11 +46,11 @@ namespace CourseProject
             {
                 if (char.ToLower(ch) >= 1072 && char.ToLower(ch) <= 1103 || char.ToLower(ch) == 1105)
                 {
-                    int p = (Array.IndexOf(alphabet, char.ToLower(ch)) + N - Array.IndexOf(alphabet, char.ToLower(key[keyIndex]))) % N;
+                    int m = (Array.IndexOf(alphabet, char.ToLower(ch)) + N - Array.IndexOf(alphabet, char.ToLower(key[keyIndex]))) % N;
                     if (char.IsLower(ch))
-                    result += alphabet[p];
+                    result += alphabet[m];
                     else
-                        result += char.ToUpper(alphabet[p]);
+                        result += char.ToUpper(alphabet[m]);
                     keyIndex++;
                     if (keyIndex == key.Length)
                         keyIndex = 0;
@@ -55,7 +62,5 @@ namespace CourseProject
             }
             return result;
         }
-
-
     }
 }
