@@ -45,6 +45,8 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.3.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -56,6 +58,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="FileReaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VigenereTests.cs" />
   </ItemGroup>
@@ -67,6 +70,20 @@
       <Project>{84F36220-75DA-48E7-93B1-F48DC8C6F8B0}</Project>
       <Name>CourseProject</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="testFiles\Decoding\Test1.txt" />
+    <Content Include="testFiles\Decoding\Test2.txt" />
+    <Content Include="testFiles\Decoding\Test3.txt" />
+    <Content Include="testFiles\Decoding\Test4.txt" />
+    <Content Include="testFiles\Encoding\abc.txt" />
+    <Content Include="testFiles\Encoding\abc2.txt" />
+    <Content Include="testFiles\Encoding\decode_test1.txt" />
+    <Content Include="testFiles\Encoding\Test1.txt" />
+    <Content Include="testFiles\Encoding\Test2.txt" />
+    <Content Include="testFiles\Encoding\Test3.txt" />
+    <Content Include="testFiles\Encoding\Test4.txt" />
+    <Content Include="testFiles\Encoding\wtf.txt" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
